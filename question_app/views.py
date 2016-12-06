@@ -1,3 +1,5 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Question, Answer, Tag, Vote, MysterMan
+from rest_framework import viewsets
+from .serializers import (QuestionSerializer, AnswerSerializer, TagSerializer,
+VoteSerializer, MysterManSerializer)
