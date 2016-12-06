@@ -5,7 +5,8 @@ from django.contrib import admin
 
 
 router = routers.DefaultRouter()
-router.register(r'',views.)
+router.register(r'question_project',views.QuestionViewSet)
+router.register(r'question_project',views.AnswerViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
