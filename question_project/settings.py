@@ -1,15 +1,16 @@
 import os
 import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'hjzcy4ygoq!=0*)_wy(#(*^p^o4#@%-pe4ak^#015yiiqfp!&j'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'warm-ridge-27360.herokuapp.com',
-                 '127.0.0.1'
+                 '127.0.0.1',
 ]
 
 
@@ -53,16 +54,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'question_project.wsgi.application'
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
+DATABASES = {'default': {}}
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
+DATABASES['default'] =  dj_database_url.config()
 
 
 AUTH_PASSWORD_VALIDATORS = [
