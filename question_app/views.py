@@ -6,10 +6,10 @@ VoteSerializer)
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
-    queryset = Ability.objects.all().order_by('date')
+    queryset = Question.objects.all().order_by('date')
     serializer_class = QuestionSerializer
 
 
 class AnswerViewSet(viewsets.ModelViewSet):
-    queryset = Ability.objects.all().order_by('date')
+    queryset = Answer.objects.all().order_by('date')
     serializer_class = AnswerSerializer

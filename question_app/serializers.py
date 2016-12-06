@@ -9,20 +9,17 @@ class QuestionSerializer(serializers.HyperlinkedModelSerializer):
 
 class AnswerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        pass
         model = Answer
         fields = ('text', 'score', 'question', 'creator', 'created')
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        pass
         model = Tag
         fields = ('name')
 
 
 class VoteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        pass
         model = Vote
         fields = ('creator', 'created', 'answer', 'point')

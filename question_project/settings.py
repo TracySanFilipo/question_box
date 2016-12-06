@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+import rest_framework
 
 
 
@@ -15,6 +16,7 @@ ALLOWED_HOSTS = ['0.0.0.0', 'warm-ridge-27360.herokuapp.com',
 
 
 INSTALLED_APPS = [
+'question_app.apps.QuestionAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -22,12 +24,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'question_app.apps.QuestionAppConfig'
+    
 ]
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permission.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGE_SIZE': 10
 }
 

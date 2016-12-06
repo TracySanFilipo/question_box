@@ -1,6 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Tag(models.Model):
+    name = models.CharField(max_length=15)
+
 
 class Question(models.Model):
     title = models.CharField(max_length=35)
@@ -17,9 +21,6 @@ class Answer(models.Model):
     creator = models.ForeignKey(User)
     created = models.DateTimeField(auto_now=True)
 
-
-class Tag(models.Model):
-    name = CharField(max_length=15)
 
 
 class Vote(models.Model):
