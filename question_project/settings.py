@@ -100,5 +100,3 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-DATABASES['default'] =  dj_database_url.config()
