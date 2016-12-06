@@ -8,7 +8,9 @@ SECRET_KEY = 'hjzcy4ygoq!=0*)_wy(#(*^p^o4#@%-pe4ak^#015yiiqfp!&j'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'warm-ridge-27360.herokuapp.com',
+                 '127.0.0.1'
+]
 
 
 INSTALLED_APPS = [
