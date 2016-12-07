@@ -33,3 +33,7 @@ a:active{
     color: inherit;
     font-size: inherit;
 }
+.navbar-nav{
+    background-color: #000000;
+    color: #ffffff;
+}
