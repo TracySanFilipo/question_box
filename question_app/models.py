@@ -22,7 +22,6 @@ class Answer(models.Model):
     created = models.DateTimeField(auto_now=True)
 
 
-
 class Vote(models.Model):
     creator = models.ForeignKey(User)
     created = models.DateTimeField(auto_now=True)

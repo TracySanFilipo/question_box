@@ -1,0 +1,39 @@
+.navbar{
+    width:100%;
+    background-color: #000000;
+    color: #ffffff;
+}
+.login_buttons{
+    background-color: #000000;
+    border: 1px solid #737373;
+    color: white;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11pt;
+}
+a:link{
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+a:visited{
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+a:hover{
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+a:active{
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+.navbar-nav{
+    background-color: #000000;
+    color: #ffffff;
+}
