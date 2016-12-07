@@ -3,7 +3,6 @@ import dj_database_url
 import rest_framework
 
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -12,11 +11,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'warm-ridge-27360.herokuapp.com',
                  '127.0.0.1',
-]
+                 ]
 
 
 INSTALLED_APPS = [
-'question_app.apps.QuestionAppConfig',
+    'question_app.apps.QuestionAppConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -24,7 +23,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    
 ]
 
 
@@ -69,7 +67,7 @@ DATABASES = {'default': {}}
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
 
 AUTH_PASSWORD_VALIDATORS = [
     {
