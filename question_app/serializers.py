@@ -1,25 +1,34 @@
 from rest_framework import serializers
 from .models import Question, Answer, Tag, Vote
+from django.contrib.auth.models import User
 
-class QuestionSerializer(serializers.HyperlinkedModelSerializer):
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Question
-        fields = ('title', 'text', 'created', 'tags', 'creator')
+        model = User
+        fields = "__all__"
 
 
-class AnswerSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Answer
-        fields = ('text', 'score', 'question', 'creator', 'created')
-
-
-class TagSerializer(serializers.HyperlinkedModelSerializer):
+class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('name')
+        fields = ['name']
 
 
-class VoteSerializer(serializers.HyperlinkedModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ['title', 'text', 'tags', 'creator']
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ('text', 'score', 'question', 'creator')
+
+
+
+class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
-        fields = ('creator', 'created', 'answer', 'point')
+        fields = ('creator', 'answer', 'point')
