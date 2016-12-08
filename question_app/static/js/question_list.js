@@ -13,13 +13,10 @@ function getCookie(name) {
    return cookieValue;
 }
 
-
 var csrftoken = getCookie('csrftoken');
-
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
-
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -27,4 +24,29 @@ $.ajaxSetup({
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
     }
+});
+
+
+function getQuestions(){
+    $.ajax({
+        url: '/api/questions/',
+        type: 'GET',
+    }).done(function(results){
+        var source = $('#post-template').html()
+        var template = Handlebars.compile(source)
+        console.log(results.results[0].created)
+        var html = template(results)
+        $('#questList').append(html)
+    })
+}
+getQuestions()
+
+
+Handlebars.registerHelper('formatTime', function (date) {
+    var day = date.slice(8, 10)
+    var month = date.slice(5, 7)
+    var year = date.slice(0, 4)
+        console.log(month)
+    return month + "-" + day + "-" + year
+
 });

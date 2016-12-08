@@ -7,10 +7,10 @@ from django.views.generic import TemplateView
 
 
 router = routers.DefaultRouter()
-router.register(r'question_app/questions', views.QuestionViewSet)
-router.register(r'question_app/answers', views.AnswerViewSet)
-router.register(r'question_app/tags', views.TagViewSet)
-router.register(r'question_app/votes', views.VoteViewSet)
+router.register(r'api/questions', views.QuestionViewSet)
+router.register(r'api/answers', views.AnswerViewSet)
+router.register(r'api/tags', views.TagViewSet)
+router.register(r'api/votes', views.VoteViewSet)
 
 
 
@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'),
     name= 'index'),
-    url(r'^questions/$', TemplateView.as_view(template_name='questions.html'),
+    url(r'^questions/$', TemplateView.as_view(template_name='question_list.html'),
     name='questions'),
 ]
