@@ -27,4 +27,6 @@ urlpatterns = [
     name= 'index'),
     url(r'^questions/$', TemplateView.as_view(template_name='questions.html'),
     name='questions'),
+    url(r'^askquestion/$', TemplateView.as_view(template_name='ask_question.html'),
+    name='askquestion'),
 ]

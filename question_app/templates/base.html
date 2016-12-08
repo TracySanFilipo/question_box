@@ -6,7 +6,7 @@
         <title>{% block title %}{% endblock %}</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block stylecontent %}<link rel="stylesheet" href="{% static 'css/base.css' %}">{% endblock %}
     </head>
     <body>
         <div class="container">
@@ -25,11 +25,11 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="{% url 'index' %}">Questions By Date<span class="sr-only">(current)</span></a></li>
-                            <li><a href="#"><img src="/location"></a></li>
+                            <li><a href="#"><img src="#"></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">In the Box <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Ask a Question</a></li>
+                                    <li><a href="{% url 'askquestion' %}">Ask a Question</a></li>
                                     <li><a href="#">Tags</a></li>
                                     <li><a href="#">Answers Needed</a></li>
                                     <li class="divider"></li>
@@ -60,12 +60,13 @@
                     </div>
                 </div>
             </nav>
-        {% block content %}{% endblock %}
         </div>
+        {% block content %}
+        {% endblock %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-        <script type="text/javascript" src="{% static 'tasks/js/tasks.js' %}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+        {% block jscontent %}
+        {% endblock %}
     </body>
 </html>

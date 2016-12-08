@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
     Register User
 {% endblock %}
+
+{% block stylecontent %}{% endblock %}
 
 {% block content %}
     <form action="" method="post">
@@ -10,4 +14,7 @@
         {{ form.as_p }}
         <input id="submit_button" type="submit" value="Create new account">
     </form>
+{% endblock %}
+
+{% block jscontent %}
 {% endblock %}

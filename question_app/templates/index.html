@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}
     Question Box
 {% endblock %}
+
+{% block stylecontent %}{% endblock %}
 
 {% block content %}
     <p>
         Get all 42 answers to your questions
     </p>
+
+{% endblock %}
+
+{% block jscontent %}
+    <script type="text/javascript" src="{% static 'ask_question.js' %}"></script>
 {% endblock %}

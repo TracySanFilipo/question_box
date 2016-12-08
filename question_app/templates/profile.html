@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}
     Profile
 {% endblock %}
+
+{% block stylecontent %}{% endblock %}
 
 {% block content %}
     <div class="questionsasked">
@@ -10,4 +14,8 @@
 
     <div class="answersgiven">
     </div>
+{% endblock %}
+
+{% block jscontent %}
+    <script type="text/javascript" src="{% static 'ask_question.js' %}"></script>
 {% endblock %}

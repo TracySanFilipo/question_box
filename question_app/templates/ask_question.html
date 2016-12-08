@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Ask Question
+{% endblock %}
+
+{% block stylecontent %}{% endblock %}
+
+{% block content %}
+    <h5>Place a question in the box</h5>
+    <form name="newquestionform" id="newquestionform" >
+        <label>Question Title: </label><input type="text" name= id=><br>
+        <label>Question text: </label><input type="text"><br>
+        <label>Initial tag: </label><input type="text" list="currenttags">
+            <datalist id="currenttags">
+
+            </datalist>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+
+{% block jscontent %}
+    {% verbatim %}
+    <script id="newq_template" type="text/x-handlebars-template">
+        {{#each results}}
+            <option>{{name}}</option>
+        {{/each}}
+    </script>
+    {% endverbatim %}
+    <script type="text/javascript" src="{% static 'js/ask_question.js' %}"></script>
+{% endblock %}

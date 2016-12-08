@@ -30,5 +30,10 @@ $.ajaxSetup({
 });
 
 
+function askQuestion(formdata){
 
-function
+    $.ajax({
+        type: "POST"
+        url: 'api/question'
+    }).done(function(data) {})
+}

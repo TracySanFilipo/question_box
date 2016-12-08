@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}
     Login
 {% endblock %}
+
+{% block stylecontent %}{% endblock %}
 
 {% block content %}
     <form method="post">
@@ -10,4 +14,7 @@
         {{ form.as_p }}
         <button id="button" type="submit">Login</button>
     </form>
+{% endblock %}
+
+{% block jscontent %}
 {% endblock %}

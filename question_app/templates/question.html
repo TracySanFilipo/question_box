@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}
     Question Box
 {% endblock %}
 
+{% block stylecontent %}{% endblock %}
+
 {% block content %}
     <div class="bigquestion">
     </div>
+{% endblock %}
+
+{% block jscontent %}
+    <script type="text/javascript" src="{% static 'ask_question.js' %}"></script>
 {% endblock %}
