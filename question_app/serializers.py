@@ -18,14 +18,13 @@ class TagSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['title', 'text', 'tags', 'creator']
+        fields = ['title', 'text', 'tags', 'creator', 'url', 'created']
 
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ('text', 'score', 'question', 'creator')
-
 
 
 class VoteSerializer(serializers.ModelSerializer):
