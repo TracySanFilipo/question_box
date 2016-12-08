@@ -10,10 +10,10 @@
 
 {% block content %}
     <h5>Place a question in the box</h5>
-    <form name="newquestionform" id="newquestionform" >
-        <label>Question Title: </label><input type="text" name= id=><br>
-        <label>Question text: </label><input type="text"><br>
-        <label>Initial tag: </label><input type="text" list="currenttags">
+    <form name="newquestionform" id="newquestionform" action="ask_question.js" method="post">
+        <label>Question Title: </label><input type="text" name="title" id="qtitle"><br>
+        <label>Question text: </label><input type="text" name="text" id="qtext"><br>
+        <label>Initial tag: </label><input type="text" name="tags" list="currenttags" id="qtags">
             <datalist id="currenttags">
 
             </datalist>
@@ -25,7 +25,7 @@
     {% verbatim %}
     <script id="newq_template" type="text/x-handlebars-template">
         {{#each results}}
-            <option>{{name}}</option>
+            <option value="{{id}}">{{name}}</option>
         {{/each}}
     </script>
     {% endverbatim %}

@@ -41,7 +41,7 @@ function askQuestion(formdata){
 }
 
 //
-// function newTag(formdata){
+// function addTag(formdata){
 //     var inputdata = formdata
 //     $.ajax({
 //         url: '/api/tag',
@@ -54,33 +54,17 @@ function askQuestion(formdata){
 
 
 function load_tags(){
-    var fakedata = {
- "count": 2,
- "next": null,
- "previous": null,
- "results": [
-   {
-     "name": "python"
-   },
-   {
-     "name": "django"
-   }
- ]
-}
-    var source = $('#newq_template').html();
-    console.log(source)
-    var template = Handlebars.compile(source);
-    console.log(template)
-    var html = template(fakedata);
-    $('#currenttags').html(html)
-    console.log("hi")
-    return
     $.ajax({
-        url: '/api/tag',
+        url: '/api/tags',
         type: "GET",
     }).done(function(results) {
+        var tagdata = results
         console.log(results)
-
+        var source = $('#newq_template').html();
+        var template = Handlebars.compile(source);
+        console.log(template)
+        var html = template(tagdata);
+        $('#currenttags').html(html)
     })
 }
 

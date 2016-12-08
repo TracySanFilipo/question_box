@@ -6,7 +6,8 @@
         <title>{% block title %}{% endblock %}</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             rel="stylesheet">
-        {% block stylecontent %}<link rel="stylesheet" href="{% static 'css/base.css' %}">{% endblock %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block stylecontent %}{% endblock %}
     </head>
     <body>
         <div class="container">
