@@ -31,6 +31,7 @@ $.ajaxSetup({
 
 
 function askQuestion(formdata){
+    console.log(formdata)
     var inputtagname = $('#qtitle').val()
     var inputtagname = $('#qtext').val()
     var inputtagname = $('#qtags').val()
