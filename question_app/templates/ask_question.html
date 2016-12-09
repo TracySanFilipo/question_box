@@ -10,14 +10,14 @@
 
 {% block content %}
     <h5>Place a question in the box</h5>
-    <form name="newquestionform" id="newquestionform" action="ask_question.js" method="post">
-        <label>Question Title: </label><input type="text" name="title" id="qtitle"><br>
-        <label>Question text: </label><input type="text" name="text" id="qtext"><br>
-        <label>Initial tag: </label><input type="text" name="tags" list="currenttags" id="qtags">
+    <form name="newquestionform" id="newquestionform" action="javascript:;" onsubmmit="askQuestion(this)" method="post">
+        <label>Question Title: </label><input type="text" name="qtitle" id="qtitle"><br>
+        <label>Question text: </label><input type="text" name="qtext" id="qtext"><br>
+        <label>Initial tag: </label><input type="text" name="qtags" list="currenttags" id="qtags">
             <datalist id="currenttags">
 
             </datalist>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" name="newquestionsubmit" id="newquestionsubmit">
     </form>
 {% endblock %}
 

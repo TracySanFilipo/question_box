@@ -31,11 +31,11 @@ $.ajaxSetup({
 
 
 function addTag(formdata){
-    var inputdata = formdata
+    var inputtagname = $('#newtag').val()
     $.ajax({
         url: '/api/tag',
         type: "POST",
-        data: formdata
+        data: inputtagname
     }).done(function(results) {
         console.log(results)
     })
@@ -49,7 +49,7 @@ function list_tags(){
     }).done(function(results) {
         var tagdata = results
         console.log(results)
-        var source = $('#newtag_template').html();
+        var source = $('#taglist_template').html();
         var template = Handlebars.compile(source);
         console.log(template)
         var html = template(tagdata);
@@ -59,3 +59,5 @@ function list_tags(){
 
 
 list_tags()
+
+$('#newtagform').click(addTag)

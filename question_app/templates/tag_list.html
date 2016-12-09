@@ -13,9 +13,9 @@
     <ol id="taglist">
     </ol>
 
-    <form name="newtagform" id="newtagform" action="tag_list.js" method="post">
+    <form name="newtagform" id="newtagform" action="javascript:;" onsubmmit="addTag(this)" method="post">
         <label>Create a new tag: </label><input type="text" name="newtag" id="newtag">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" name="tagsubmit" id="tagsubmit">
     </form>
 {% endblock %}
 
@@ -23,7 +23,7 @@
     {% verbatim %}
     <script id="newtag_template" type="text/x-handlebars-template">
         {{#each results}}
-            <li value="{{id}}">{{name}}</li>
+            <a href="{{url}}"><li value="{{id}}">{{name}}</li></a>
         {{/each}}
     </script>
     {% endverbatim %}
