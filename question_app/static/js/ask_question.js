@@ -31,6 +31,10 @@ $.ajaxSetup({
 
 
 function askQuestion(formdata){
+    console.log(formdata)
+    var inputtagname = $('#qtitle').val()
+    var inputtagname = $('#qtext').val()
+    var inputtagname = $('#qtags').val()
     $.ajax({
         url: '/api/question',
         type: "POST",
@@ -69,3 +73,6 @@ function load_tags(){
 }
 
 load_tags()
+
+
+$('#newquestionsubmit').click(askQuestion)
