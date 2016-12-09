@@ -29,4 +29,6 @@ urlpatterns = [
     name='questions'),
     url(r'^askquestion/$', TemplateView.as_view(template_name='ask_question.html'),
     name='askquestion'),
+    url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
+    name='tags'),
 ]
