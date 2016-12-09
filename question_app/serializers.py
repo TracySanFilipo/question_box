@@ -18,7 +18,7 @@ class TagSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['title', 'text', 'tags', 'creator', 'url', 'created']
+        fields = ['title', 'text', 'tags', 'creator', 'url', 'created', 'id']
 
 
 class AnswerSerializer(serializers.ModelSerializer):

@@ -1,18 +1,35 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block title %}
-    Question Box
+    Question Detail
 {% endblock %}
 
-{% block stylecontent %}{% endblock %}
+{% block stylecontent %}<link rel="stylesheet" href="{%static 'css/question_detail.css'%}">{% endblock %}
 
 {% block content %}
-    <div class="bigquestion">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="questDetail"></div>
+            </div>
+        </div>
     </div>
+
+    <script id="post-template" type="text/x-handlebars-template">
+        <article class="post-container">
+            {% verbatim %}
+                <h3 id="questTitle">{{title}}</h3>
+                <h6 id="questDate">Date Posted: {{{formatTime created}}}</h6>
+                <p id="questText">{{text}}</p>
+            {% endverbatim %}
+        </article>
+    </script>
 {% endblock %}
 
 {% block jscontent %}
-    <script type="text/javascript" src="{% static 'ask_question.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/question_detail.js' %}"></script>
 {% endblock %}

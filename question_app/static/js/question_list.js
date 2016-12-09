@@ -34,7 +34,6 @@ function getQuestions(){
     }).done(function(results){
         var source = $('#post-template').html()
         var template = Handlebars.compile(source)
-        console.log(results.results[0].created)
         var html = template(results)
         $('#questList').append(html)
     })
@@ -49,4 +48,18 @@ Handlebars.registerHelper('formatTime', function (date) {
         console.log(month)
     return month + "-" + day + "-" + year
 
-});
+})
+
+Handlebars.registerHelper('linkURL', function (id, url, title, text){
+    title = Handlebars.Utils.escapeExpression(title)
+    id = Handlebars.Utils.escapeExpression(id)
+    text = Handlebars.Utils.escapeExpression(text)
+    datatype = this.url.split('/')
+    datatype = datatype[datatype.length-3]
+    return '<a href="' + '/' + datatype + '/' + this.id + '">' + '<b>' + this.title + '</b>' + '</a>'
+    return '<h2>' + this.text + '</h2>'
+})
+
+function displayQuestionDetail(){
+
+}
