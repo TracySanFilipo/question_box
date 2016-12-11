@@ -14,9 +14,8 @@
                 <div id="questDetail"></div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
+
         <div class="row">
             <div class="col-md-12">
                 <div id="answerDetail"></div>
@@ -35,15 +34,27 @@
     </script>
 
     <script id="post-template-two" type="text/x-handlebars-template">
-        <article class="post-container">
+        <article class="post-container-two">
             {% verbatim %}
-            {{#each results}}
-                <h3 id="answerTitle">{{text}}</h3>
-                <h6 id="answerDate">Date Posted: {{{formatTime created}}}</h6>
-            {{/each}}
+                {{#each this}}
+                <div class="rowAnswer">
+                    <h6 class="answerText">{{this.this.text}}</h6>
+                </div>
+                <h6 class="answerDate">Date Posted: {{{formatTime created}}}</h6>
+                <p class="answerCreator">Posted by: {{ creator.username}}</p>
+                <h6 class="answerScore">Score: {{score}}</h6>
+                <button type="submit" class="upanswer" onclick="voteAnswer({{id}}, {{score}}, 1)">
+                   <span class="glyphicon glyphicon-thumbs-up"></span>
+                </button>
+                <button type="submit" class="downanswer" onclick="voteAnswer({{id}}, {{score}}, -1)">
+                   <span class="glyphicon glyphicon-thumbs-down"></span>
+                </button>
+                {{/each}}
             {% endverbatim %}
         </article>
     </script>
+
+
 {% endblock %}
 
 {% block jscontent %}

@@ -1,5 +1,18 @@
 #questDetail{
-    background-color: grey;
+    background-color: #F1EEEE;
     border-radius: 2px;
     font-size: 18px;
+}
+
+
+.rowAnswer{
+    border: solid grey 1px;
+}
+
+.answerDate{
+    font-style: italic;
+}
+
+.answerCreator{
+    font-style: italic;
 }

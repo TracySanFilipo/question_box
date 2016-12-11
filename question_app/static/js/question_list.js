@@ -29,9 +29,10 @@ $.ajaxSetup({
 
 function answerQuestion(id){
     var questId = id
+
     var answerText = $('#questAnswer' + id).val()
-    console.log(answerText)
     var user = $('#userId').val()
+    console.log(user)
     context = {
         'question': questId,
         'text': answerText,
@@ -43,7 +44,6 @@ function answerQuestion(id){
         type: "POST",
         data: context
     }).done(function(results) {
-        console.log(results)
     })
 }
 
@@ -59,7 +59,7 @@ function getQuestions(){
         var template = Handlebars.compile(source)
         var html = template(results)
         $('#questList').append(html)
-        console.log($('#addAnswer'))
+        // console.log($('#addAnswer'))
 
     })
 }
@@ -70,7 +70,6 @@ Handlebars.registerHelper('formatTime', function (date) {
     var day = date.slice(8, 10)
     var month = date.slice(5, 7)
     var year = date.slice(0, 4)
-        console.log(month)
     return month + "-" + day + "-" + year
 
 })

@@ -17,7 +17,7 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.CharField(max_length=500)
     score = models.IntegerField(default=0)
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question, related_name='answers')
     creator = models.ForeignKey(User)
     created = models.DateTimeField(auto_now=True)
 

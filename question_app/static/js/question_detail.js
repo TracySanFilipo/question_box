@@ -32,7 +32,7 @@ $.ajaxSetup({
 function currentURL(){
     var url = window.location.href
     getQuestionDetail(url)
-    getAnswers(url)
+
 }
 currentURL()
 
@@ -44,6 +44,8 @@ function getQuestionDetail(url){
         url: '/api/questions' + id,
         type: 'GET',
     }).done(function(results){
+        var answers = results.answers
+        displayAnswers(answers)
         var context = {
             title: results.title,
             created: results.created,
@@ -53,27 +55,35 @@ function getQuestionDetail(url){
         var template = Handlebars.compile(source)
         var html = template(context)
         $('#questDetail').append(html)
+
     })
 }
 
 
-function getAnswers(url){
-    // var id = url.split('/')
-    // console.log(id)
-    // id = url.slice(-2)
-    // console.log(id)
-    $.ajax({
-        url: '/api/answers/',
-        type: 'GET',
-    }).done(function(results){
-        console.log(results.results)
-        var source = $('#post-template-two').html()
-        var template = Handlebars.compile(source)
-        var html = template(results)
-        $('#answerDetail').append(html)
-    })
+function displayAnswers(answers){
+    var sourceTwo = $('#post-template-two').html()
+    var templateTwo = Handlebars.compile(sourceTwo)
+    var htmlTwo = templateTwo(answers)
+    $('#answerDetail').append(htmlTwo)
+
 }
-getAnswers()
+
+
+function voteAnswer(thisAnswerId, thisAnswerScore, amount){
+   var newScore = parseInt(thisAnswerScore) + amount
+   var goToId = thisAnswerId
+   var newData = {"score": newScore}
+   var url = '/api/answers/' + goToId + "/"
+   console.log(url)
+   console.log(newData)
+   $.ajax({
+       url: url,
+       type: 'PATCH',
+       data: newData,
+   }).done(function(results){
+    console.log(results)
+   })
+}
 
 
 Handlebars.registerHelper('formatTime', function (date) {

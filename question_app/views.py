@@ -21,17 +21,6 @@ class AnswerViewSet(viewsets.ModelViewSet):
     serializer_class = AnswerSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    # def get_queryset(self):
-    #     question = question
-    #     return Purchase.objects.filter(question_id=question)
-
-
-# class AnswerList(generics.ListAPIView):
-#     queryset = Answer.objects.all()
-#     serializer_class = AnswerSerializer
-#     filter_backends = (filters.DjangoFilterBackend,)
-#     filter_fields = ('question',)
-#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
