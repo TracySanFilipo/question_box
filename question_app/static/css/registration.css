@@ -1,0 +1,10 @@
+#submit_button{
+    border: 0;
+    border-radius: 3px;
+}
+
+.col-md-12{
+    padding:1%;
+    background-color: #F1EEEE;
+    border-radius: 5px;
+}

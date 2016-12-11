@@ -19,13 +19,13 @@ class AnswerSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['name']
+        fields = ['name', 'id']
 
 
 class QuestionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
     tags = TagSerializer(many=True, read_only=True)
-    creator = UserSerializer(read_only=True)
+
 
     class Meta:
         model = Question

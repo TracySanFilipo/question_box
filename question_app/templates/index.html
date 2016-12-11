@@ -6,12 +6,18 @@
     Question Box
 {% endblock %}
 
-{% block stylecontent %}{% endblock %}
+{% block stylecontent %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
 
 {% block content %}
-    <p>
-        Get all 42 answers to your questions
-    </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Get all 42 answers to your questions</p>
+                <a href="{% url 'questions' %}">See questions</a>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
 

@@ -6,14 +6,21 @@
     Register User
 {% endblock %}
 
-{% block stylecontent %}{% endblock %}
+{% block stylecontent %}<link rel="stylesheet" href="{% static 'css/registration.css' %}">{% endblock %}
 
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input id="submit_button" type="submit" value="Create new account">
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input id="submit_button" type="submit" value="Create new account">
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block jscontent %}

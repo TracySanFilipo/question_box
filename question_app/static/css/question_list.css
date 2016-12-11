@@ -1,5 +1,5 @@
 .col-sm-11{
-    background-color: grey;
+    background-color: #F1EEEE;
     margin-left: 3%;
     border-radius: 5px;
 }
@@ -11,4 +11,9 @@
 
 .modal_date{
     font-style: italic;
+}
+
+
+.btn, btn-primary, btn-md{
+    background-color: grey;
 }

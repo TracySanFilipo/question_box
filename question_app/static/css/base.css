@@ -37,3 +37,8 @@ a:active{
     background-color: #000000;
     color: #ffffff;
 }
+
+.image{
+    height:auto;
+    width: auto;
+}

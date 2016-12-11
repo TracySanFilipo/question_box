@@ -4,7 +4,7 @@
         {% block content %}
         <link rel="stylesheet" href="{% static 'css/question_list.css' %}">
 
-        <div id="questList"></div>
+        <div id="questList">{{current_user.username}}</div>
 
         <input id="userId" type="hidden" name="userId" value="{{user.id}}">
 
@@ -19,7 +19,7 @@
                                 <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
                                 <p class="questText">{{text}}</a></p>
                                 <button type="button" class="btn btn-primary btn-md"
-                                data-toggle="modal" data-target="#{{this.id}}">Answer</button>
+                                data-toggle="modal" data-target="#{{this.id}}">Answer Question</button>
                                 <!-- modal -->
                                 <div class="modal fade" id="{{this.id}}">
                                     <div class="modal-dialog" role="document">
@@ -41,7 +41,6 @@
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
-
                             </div>
                         </div>
                     </div>

@@ -27,18 +27,15 @@ $.ajaxSetup({
 })
 
 function addTag(){
-    var name = $('#newtag').val()
-    console.log(name)
+    var name = $('#tagText').val()
     var context = {
         'name': name,
     }
-    console.log(context)
     $.ajax({
-        url: 'http://0.0.0.0:5000/api/tags/',
+        url: '/api/tags/',
         type: "POST",
         data: context
     }).done(function(results) {
-        console.log(results)
     })
 }
 $('#createTag').click(addTag)
@@ -49,11 +46,9 @@ function getTags(){
         url: '/api/tags/',
         type: 'GET',
     }).done(function(results){
-        console.log(results.results)
-        console.log(results.results.name)
         var source = $('#post-template').html()
         var template = Handlebars.compile(source)
-        var html = template(results.results)
+        var html = template(results)
 
         $('#tagList').append(html)
     })
