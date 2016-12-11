@@ -27,6 +27,29 @@ $.ajaxSetup({
 });
 
 
+function answerQuestion(id){
+    var questId = id
+    var answerText = $('#questAnswer' + id).val()
+    console.log(answerText)
+    var user = $('#userId').val()
+    context = {
+        'question': questId,
+        'text': answerText,
+        'creator': user,
+    }
+    console.log(context)
+    $.ajax({
+        url: '/api/answers/',
+        type: "POST",
+        data: context
+    }).done(function(results) {
+        console.log(results)
+    })
+}
+
+
+
+
 function getQuestions(){
     $.ajax({
         url: '/api/questions/',
@@ -36,6 +59,8 @@ function getQuestions(){
         var template = Handlebars.compile(source)
         var html = template(results)
         $('#questList').append(html)
+        console.log($('#addAnswer'))
+
     })
 }
 getQuestions()
@@ -60,6 +85,10 @@ Handlebars.registerHelper('linkURL', function (id, url, title, text){
     return '<h2>' + this.text + '</h2>'
 })
 
-function displayQuestionDetail(){
 
-}
+Handlebars.registerHelper('userId', function(id){
+    $('').on('shown', function () {
+  // do something…
+})
+
+})

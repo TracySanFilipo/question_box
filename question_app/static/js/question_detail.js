@@ -13,10 +13,12 @@ function getCookie(name) {
    return cookieValue
 }
 
+
 var csrftoken = getCookie('csrftoken')
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))
 }
+
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -26,11 +28,14 @@ $.ajaxSetup({
     }
 })
 
+
 function currentURL(){
     var url = window.location.href
     getQuestionDetail(url)
+    getAnswers(url)
 }
 currentURL()
+
 
 function getQuestionDetail(url){
     var id = url.split('/')
@@ -50,6 +55,25 @@ function getQuestionDetail(url){
         $('#questDetail').append(html)
     })
 }
+
+
+function getAnswers(url){
+    // var id = url.split('/')
+    // console.log(id)
+    // id = url.slice(-2)
+    // console.log(id)
+    $.ajax({
+        url: '/api/answers/',
+        type: 'GET',
+    }).done(function(results){
+        console.log(results.results)
+        var source = $('#post-template-two').html()
+        var template = Handlebars.compile(source)
+        var html = template(results)
+        $('#answerDetail').append(html)
+    })
+}
+getAnswers()
 
 
 Handlebars.registerHelper('formatTime', function (date) {

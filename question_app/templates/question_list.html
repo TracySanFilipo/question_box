@@ -1,31 +1,56 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Question List{% endblock %}
-    {% block content %}
-    <link rel="stylesheet" href="{% static 'css/question_list.css' %}">
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block title %}Question List{% endblock %}
+        {% block content %}
+        <link rel="stylesheet" href="{% static 'css/question_list.css' %}">
 
-        <div id="questList"></div>
+            <div id="questList"></div>
+            <input id="userId" type="hidden" name="userId" value="{{user.id}}">
+        <script id="post-template" type="text/x-handlebars-template">
+            <article class="post-container">
+                {% verbatim %}
+                {{#each results}}
+                    <div class="row">
+                        <div class='col-sm-11'>
+                            <div class="row">
+                                <h3 class="questTitle">{{{ linkURL this }}}</h3>
+                                <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
+                                <p class="questText"><a href="{{url}}">{{text}}</a></p>
+                                <button type="button" class="btn btn-primary btn-md"
+                                data-toggle="modal" data-target="#{{this.id}}">Answer</button>
+                                <!-- modal -->
+                                <div class="modal fade" id="{{this.id}}">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h3 class="modal-title">{{title}}</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input id="questAnswer{{this.id}}" type="text" name="answer" value="">
+                                                <input id="{{this.id}}" type="hidden" name="quest_id" value="{{this.id}}">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" data-dismiss="modal" class="btn btn-secondary" onclick="answerQuestion({{this.id}})">Save</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
 
-    <script id="post-template" type="text/x-handlebars-template">
-        <article class="post-container">
-            {% verbatim %}
-            {{#each results}}
-                <div class="row">
-                    <div class='col-sm-11'>
-                        <div class="row">
-                            <h3 id="questTitle">{{{ linkURL this }}}</h3>
-                            <h6 id="questDate">Date Posted: {{{formatTime created}}}</h6>
-                            <p id="questText"><a href="{{url}}">{{text}}</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {{/each}}
-            {% endverbatim %}
-        </article>
-    </script>
-    {% endblock %}
-    {% block jscontent %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="{% static 'js/question_list.js' %}"></script>
-    {% endblock %}
+                {{/each}}
+                {% endverbatim %}
+            </article>
+        </script>
+        {% endblock %}
+        {% block jscontent %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="{% static 'js/question_list.js' %}"></script>
+        {% endblock %}

@@ -30,49 +30,42 @@ $.ajaxSetup({
 });
 
 
-function askQuestion(formdata){
-    console.log(formdata)
-    var inputtagname = $('#qtitle').val()
-    var inputtagname = $('#qtext').val()
-    var inputtagname = $('#qtags').val()
+function askQuestion(){
+    var questTitle = $('#qTitle').val()
+    var questText = $('#qText').val()
+    var questTag = 2
+    var user = $('#userId').val()
+    context = {
+        'title': questTitle,
+        'text': questText,
+        'tags': questTag,
+        'creator': user,
+    }
+    console.log(questTag)
+    console.log(context)
     $.ajax({
-        url: '/api/question',
+        url: '/api/questions/',
         type: "POST",
-        data: formdata
+        data: context
     }).done(function(results) {
         console.log(results)
     })
 }
 
-//
-// function addTag(formdata){
-//     var inputdata = formdata
-//     $.ajax({
-//         url: '/api/tag',
-//         type: "POST",
-//         data: formdata
-//     }).done(function(results) {
-//         console.log(results)
-//     })
-// }
+$('#newQuestSubmit').click(askQuestion)
 
 
-function load_tags(){
+function getTags(){
+    var dropdown = $("#selectTag")
     $.ajax({
-        url: '/api/tags',
-        type: "GET",
-    }).done(function(results) {
-        var tagdata = results
-        console.log(results)
-        var source = $('#newq_template').html();
-        var template = Handlebars.compile(source);
-        console.log(template)
-        var html = template(tagdata);
-        $('#currenttags').html(html)
+        url: '/api/tags/',
+        type: 'GET',
+    }).done(function(results){
+        console.log(results.results)
+        var source = $('#post-template').html()
+        var template = Handlebars.compile(source)
+        var html = template(results)
+        $('#currentTags').append(html)
     })
 }
-
-load_tags()
-
-
-$('#newquestionsubmit').click(askQuestion)
+getTags()

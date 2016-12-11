@@ -25,11 +25,9 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'),
     name= 'index'),
-    url(r'^questions/$', TemplateView.as_view(template_name='question_list.html'),
-    name='questions'),
-    url(r'^askquestion/$', TemplateView.as_view(template_name='ask_question.html'),
-    name='askquestion'),
+    url(r'^questions/$', views.list_question,name='questions'),
+    url(r'^ask_question/$', views.ask_question, name='ask_question'),
     url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
     name='tags'),
-    url(r'^questions/[0-9]+$', TemplateView.as_view(template_name='question_detail.html'))    
+    url(r'^questions/[0-9]+$', TemplateView.as_view(template_name='question_detail.html'))
 ]

@@ -10,22 +10,27 @@
 
 {% block content %}
     <h5>Checkout Tags to Browse by Topic</h5>
-    <ol id="taglist">
-    </ol>
-
-    <form name="newtagform" id="newtagform" action="javascript:;" onsubmmit="addTag(this)" method="post">
-        <label>Create a new tag: </label><input type="text" name="newtag" id="newtag">
-        <input type="submit" value="Submit" name="tagsubmit" id="tagsubmit">
-    </form>
+    <div id="tagList"></div>
 {% endblock %}
 
 {% block jscontent %}
-    {% verbatim %}
-    <script id="taglist_template" type="text/x-handlebars-template">
-        {{#each results}}
-            <a href="{{url}}"><li value="{{id}}">{{name}}</li></a>
-        {{/each}}
+    <script id="post-template" type="text/x-handlebars-template">
+        <article class="post-container">
+            {% verbatim %}
+            {{#each results}}
+                <div class="row">
+                    <div class='col-sm-11'>
+                        <div class="row">
+                            <h3 id="tagTitle">{{name}}</h3>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {% endverbatim %}
+        </article>
     </script>
-    {% endverbatim %}
-    <script type="text/javascript" src="{% static 'js/tag_list.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/tags_list.js' %}"></script>
 {% endblock %}
