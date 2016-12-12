@@ -13,10 +13,12 @@ function getCookie(name) {
    return cookieValue;
 }
 
+
 var csrftoken = getCookie('csrftoken');
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -29,16 +31,13 @@ $.ajaxSetup({
 
 function answerQuestion(id){
     var questId = id
-
     var answerText = $('#questAnswer' + id).val()
     var user = $('#userId').val()
-    console.log(user)
     context = {
         'question': questId,
         'text': answerText,
         'creator': user,
     }
-    console.log(context)
     $.ajax({
         url: '/api/answers/',
         type: "POST",
@@ -46,7 +45,6 @@ function answerQuestion(id){
     }).done(function(results) {
     })
 }
-
 
 
 
@@ -73,6 +71,7 @@ Handlebars.registerHelper('formatTime', function (date) {
     return month + "-" + day + "-" + year
 
 })
+
 
 Handlebars.registerHelper('linkURL', function (id, url, title, text){
     title = Handlebars.Utils.escapeExpression(title)

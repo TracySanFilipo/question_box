@@ -41,17 +41,13 @@ function askQuestion(){
         'tags': questTag,
         'creator': user,
     }
-    console.log(questTag)
-    console.log(context)
     $.ajax({
         url: '/api/questions/',
         type: "POST",
         data: context
     }).done(function(results) {
-        console.log(results)
     })
 }
-
 $('#newQuestSubmit').click(askQuestion)
 
 

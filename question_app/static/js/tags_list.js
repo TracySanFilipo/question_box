@@ -13,10 +13,12 @@ function getCookie(name) {
    return cookieValue
 }
 
+
 var csrftoken = getCookie('csrftoken')
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))
 }
+
 
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
@@ -25,6 +27,7 @@ $.ajaxSetup({
         }
     }
 })
+
 
 function addTag(){
     var name = $('#tagText').val()

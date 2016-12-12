@@ -39,9 +39,9 @@ currentURL()
 
 function getQuestionDetail(url){
     var id = url.split('/')
-    id = '/' + url.slice(-2)
+    id = id[4]
     $.ajax({
-        url: '/api/questions' + id,
+        url: '/api/questions/' + id,
         type: 'GET',
     }).done(function(results){
         var answers = results.answers
@@ -74,14 +74,11 @@ function voteAnswer(thisAnswerId, thisAnswerScore, amount){
    var goToId = thisAnswerId
    var newData = {"score": newScore}
    var url = '/api/answers/' + goToId + "/"
-   console.log(url)
-   console.log(newData)
    $.ajax({
        url: url,
        type: 'PATCH',
        data: newData,
    }).done(function(results){
-    console.log(results)
    })
 }
 

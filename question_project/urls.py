@@ -18,16 +18,17 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls',
-    namespace='rest_framework')),
+                               namespace='rest_framework')),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'},
         name='logout'),
     url(r'^register/$', views.register, name='register'),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'),
-    name= 'index'),
+        name= 'index'),
     url(r'^questions/$', views.list_question,name='questions'),
     url(r'^ask_question/$', views.ask_question, name='ask_question'),
     url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
-    name='tags'),
-    url(r'^questions/[0-9]+$', TemplateView.as_view(template_name='question_detail.html'))
+        name='tags'),
+    url(r'^questions/[0-9]+$', TemplateView.as_view(
+    template_name='question_detail.html'))
 ]

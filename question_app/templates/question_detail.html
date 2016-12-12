@@ -27,9 +27,9 @@
     <script id="post-template" type="text/x-handlebars-template">
         <article class="post-container">
             {% verbatim %}
-                <h3 id="questTitle">{{title}}</h3>
-                <h6 id="questDate">Date Posted: {{{formatTime created}}}</h6>
-                <p id="questText">{{text}}</p>
+                <h3 class="questTitle">{{title}}</h3>
+                <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
+                <p class="questText">{{text}}</p>
             {% endverbatim %}
         </article>
     </script>
@@ -39,18 +39,19 @@
             {% verbatim %}
                 {{#each this}}
                 <div class="rowAnswer">
-                    <h5>Answer:</h5>
-                    <h6 class="answerText">{{this.this.text}}</h6>
+                    <h2>Answer:</h2>
+                    <h4 class="answerText">{{this.this.text}}</h4>
+
+                    <h6 class="answerDate">Date Posted: {{{formatTime created}}}</h6>
+                    <h6 class="answerCreator">Posted by: {{ creator.username}}</h6>
+                    <h6 class="answerScore">Score: {{score}}</h6>
+                    <button type="submit" class="upanswer" onclick="voteAnswer({{id}}, {{score}}, 1)">
+                       <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                    <button type="submit" class="downanswer" onclick="voteAnswer({{id}}, {{score}}, -1)">
+                       <span class="glyphicon glyphicon-thumbs-down"></span>
+                    </button>
                 </div>
-                <h6 class="answerDate">Date Posted: {{{formatTime created}}}</h6>
-                <p class="answerCreator">Posted by: {{ creator.username}}</p>
-                <h6 class="answerScore">Score: {{score}}</h6>
-                <button type="submit" class="upanswer" onclick="voteAnswer({{id}}, {{score}}, 1)">
-                   <span class="glyphicon glyphicon-thumbs-up"></span>
-                </button>
-                <button type="submit" class="downanswer" onclick="voteAnswer({{id}}, {{score}}, -1)">
-                   <span class="glyphicon glyphicon-thumbs-down"></span>
-                </button>
                 {{/each}}
             {% endverbatim %}
         </article>
