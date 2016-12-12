@@ -29,25 +29,6 @@ $.ajaxSetup({
 });
 
 
-function answerQuestion(id){
-    var questId = id
-    var answerText = $('#questAnswer' + id).val()
-    var user = $('#userId').val()
-    context = {
-        'question': questId,
-        'text': answerText,
-        'creator': user,
-    }
-    $.ajax({
-        url: '/api/answers/',
-        type: "POST",
-        data: context
-    }).done(function(results) {
-    })
-}
-
-
-
 function getQuestions(){
     $.ajax({
         url: '/api/questions/',
@@ -57,7 +38,6 @@ function getQuestions(){
         var template = Handlebars.compile(source)
         var html = template(results)
         $('#questList').append(html)
-        // console.log($('#addAnswer'))
 
     })
 }

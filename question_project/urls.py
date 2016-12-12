@@ -7,15 +7,18 @@ from django.views.generic import TemplateView
 
 
 router = routers.DefaultRouter()
-router.register(r'api/questions', views.QuestionViewSet)
-router.register(r'api/answers', views.AnswerViewSet)
-router.register(r'api/tags', views.TagViewSet)
-router.register(r'api/votes', views.VoteViewSet)
+router.register(r'questions', views.QuestionViewSet)
+router.register(r'answers', views.AnswerViewSet)
+router.register(r'tags', views.TagViewSet)
+router.register(r'votes', views.VoteViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'users_questions', views.UserQuestionViewSet)
+router.register(r'users_answers', views.UserAnswerViewSet)
 
 
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
@@ -25,10 +28,12 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^index/$', TemplateView.as_view(template_name='index.html'),
         name= 'index'),
-    url(r'^questions/$', views.list_question,name='questions'),
+    url(r'^questions/$', views.list_question, name='questions'),
     url(r'^ask_question/$', views.ask_question, name='ask_question'),
     url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
         name='tags'),
-    url(r'^questions/[0-9]+$', TemplateView.as_view(
-    template_name='question_detail.html'))
+    url(r'^users_questions/[0-9]+$', TemplateView.as_view(
+    template_name='question_detail.html')),
+    url(r'^accounts/profile$', views.profile_page, name='profile'),
+
 ]

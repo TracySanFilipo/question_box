@@ -15,7 +15,6 @@ function getCookie(name) {
 
 
 var csrftoken = getCookie('csrftoken');
-
 function csrfSafeMethod(method) {
    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
@@ -34,18 +33,20 @@ function askQuestion(){
     var questTitle = $('#qTitle').val()
     var questText = $('#qText').val()
     var questTag = 2
-    var user = $('#userId').val()
+    var user_id = $('#userId').val()
     context = {
         'title': questTitle,
         'text': questText,
         'tags': questTag,
-        'creator': user,
+        'user': user_id,
     }
+    console.log(context)
     $.ajax({
         url: '/api/questions/',
         type: "POST",
         data: context
     }).done(function(results) {
+        window.location.href='/questions/';
     })
 }
 $('#newQuestSubmit').click(askQuestion)

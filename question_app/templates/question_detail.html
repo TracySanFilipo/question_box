@@ -12,14 +12,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div id="questDetail"></div>
+                <input id="userId" type="hidden" name="userId" value="{{user.id}}">
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-md-12">
                 <div id="answerDetail"></div>
-
             </div>
         </div>
     </div>
@@ -30,6 +29,29 @@
                 <h3 class="questTitle">{{title}}</h3>
                 <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
                 <p class="questText">{{text}}</p>
+                <button type="button" class="btn btn-primary btn-md"
+                data-toggle="modal" data-target="#answer_modal">Answer Question</button>
+                <!-- modal -->
+                <div class="modal fade" id="answer_modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title">{{title}}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <input id="questAnswer{{id}}" type="text" name="answer" value="">
+                                <input id="{{id}}" type="hidden" name="quest_id" value="{{id}}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-secondary" onclick="answerQuestion({{id}})">Save</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             {% endverbatim %}
         </article>
     </script>
@@ -41,10 +63,9 @@
                 <div class="rowAnswer">
                     <h2>Answer:</h2>
                     <h4 class="answerText">{{this.this.text}}</h4>
-
                     <h6 class="answerDate">Date Posted: {{{formatTime created}}}</h6>
-                    <h6 class="answerCreator">Posted by: {{ creator.username}}</h6>
-                    <h6 class="answerScore">Score: {{score}}</h6>
+                    <h6 class="answerCreator">Posted by: {{ user.username}}</h6>
+                    <h6 class="answerScore" id="answer_score_{{id}}">Score: {{score}}</h6>
                     <button type="submit" class="upanswer" onclick="voteAnswer({{id}}, {{score}}, 1)">
                        <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>

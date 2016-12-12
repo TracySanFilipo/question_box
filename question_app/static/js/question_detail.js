@@ -40,8 +40,9 @@ currentURL()
 function getQuestionDetail(url){
     var id = url.split('/')
     id = id[4]
+    var url = '/api/users_questions/' + id
     $.ajax({
-        url: '/api/questions/' + id,
+        url: url,
         type: 'GET',
     }).done(function(results){
         var answers = results.answers
@@ -50,12 +51,33 @@ function getQuestionDetail(url){
             title: results.title,
             created: results.created,
             text: results.text,
+            id: results.id,
         }
         var source = $('#post-template').html()
         var template = Handlebars.compile(source)
         var html = template(context)
         $('#questDetail').append(html)
 
+    })
+}
+
+
+function answerQuestion(id){
+    var questId = id
+    var answerText = $('#questAnswer' + id).val()
+    var user = $('#userId').val()
+    context = {
+        'question': questId,
+        'text': answerText,
+        'user': user,
+    }
+    console.log(context)
+    $.ajax({
+        url: '/api/answers/',
+        type: "POST",
+        data: context
+    }).done(function(results) {
+        location = location
     })
 }
 
@@ -79,6 +101,8 @@ function voteAnswer(thisAnswerId, thisAnswerScore, amount){
        type: 'PATCH',
        data: newData,
    }).done(function(results){
+        var id_container = '#answer_score_' + results.id
+        $(id_container).html('Score: ' + results.score)
    })
 }
 

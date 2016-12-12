@@ -6,17 +6,66 @@
     Profile
 {% endblock %}
 
-{% block stylecontent %}{% endblock %}
+{% block stylecontent %}<link rel="stylesheet" href="{% static 'css/profile.css' %}">{% endblock %}
 
 {% block content %}
-    <div class="questionsasked">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="profileHeader">{{user.username}}</h1>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Questions</h2>
+            <div id="questList" ></div>
+        </div>
+        <div class="col-md-6">
+            <h2>Answers</h2>
+            <div id="answerList"></div>
+        </div>
+    </div>
+</div>
 
-    <div class="answersgiven">
-    </div>
 {% endblock %}
 
 {% block jscontent %}
+    <script id="post-template" type="text/x-handlebars-template">
+        <article class="post-container">
+            {% verbatim %}
+            {{#each results}}
+                <div class="row">
+                    <div class='col-sm-11'>
+                        <div class="row">
+                            <h3 class="questTitle">{{{ linkURL this }}}</h3>
+                            <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
+                            <p class="questText">{{text}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {% endverbatim %}
+        </article>
+    </script>
+
+
+    <script id="post-template-answers" type="text/x-handlebars-template">
+        <article class="post-container">
+            {% verbatim %}
+            {{#each results}}
+                <div class="row">
+                    <div class='col-sm-11'>
+                        <div class="row">
+                            <p class="questText">{{text}}</a></p>
+                            <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
+
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {% endverbatim %}
+        </article>
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

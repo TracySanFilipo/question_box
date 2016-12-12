@@ -3,16 +3,10 @@ from .models import Question, Answer, Tag, Vote
 from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
-
-
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('text', 'score', 'question', 'creator', 'id', 'created',
+        fields = ('text', 'score', 'question', 'user', 'id', 'created',
                   'url')
 
 
@@ -29,11 +23,17 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['title', 'text', 'tags', 'creator', 'url', 'created', 'id',
-                  'answers']
+        fields = ['title', 'text', 'tags', 'user', 'url', 'created', 'id', 'answers']
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
 
 
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
-        fields = ('creator', 'answer', 'point')
+        fields = ('user', 'answer', 'point')
