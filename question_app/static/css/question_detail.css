@@ -21,3 +21,29 @@
 .answerCreator{
     font-style: italic;
 }
+
+.upanswer{
+    background-color: #337ab7;
+    color:#ffffff;
+    border: 0;
+}
+
+.downanswer{
+    background-color: #337ab7;
+    border: 0;
+    color:#ffffff;
+    font-weight: bold;
+}
+
+.questTitle{
+    color: #b30000;
+}
+
+.questDate{
+    font-style: italic;
+}
+
+.answerHeader{
+    color: #000000;
+    font-stretch: condensed;
+}

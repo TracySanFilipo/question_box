@@ -1,4 +1,9 @@
 .profileHeader{
     text-align: center;
-    
+    color: #b30000;
+
+}
+
+.header{
+    border-bottom: solid #cccccc 3px;
 }

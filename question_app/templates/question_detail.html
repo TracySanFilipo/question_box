@@ -61,10 +61,10 @@
             {% verbatim %}
                 {{#each this}}
                 <div class="rowAnswer">
-                    <h2>Answer:</h2>
+                    <h2 class="answerHeader">Answer:</h2>
                     <h4 class="answerText">{{this.this.text}}</h4>
                     <h6 class="answerDate">Date Posted: {{{formatTime created}}}</h6>
-                    <h6 class="answerCreator">Posted by: {{ user.username}}</h6>
+                    <h6 class="answerCreator">Posted by: {{ user.name}}</h6>
                     <h6 class="answerScore" id="answer_score_{{id}}">Score: {{score}}</h6>
                     <button type="submit" class="upanswer" onclick="voteAnswer({{id}}, {{score}}, 1)">
                        <span class="glyphicon glyphicon-thumbs-up"></span>

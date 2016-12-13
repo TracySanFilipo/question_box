@@ -17,6 +17,8 @@ class Question(models.Model):
     tags = models.ManyToManyField(Tag)
     user = models.ForeignKey(User, related_name="question_user")
 
+    def __repr__(self):
+        return self.title 
 
 class Answer(models.Model):
     text = models.CharField(max_length=500)

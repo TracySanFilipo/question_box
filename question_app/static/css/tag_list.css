@@ -9,3 +9,12 @@
     margin-left: 3%;
     border-radius: 5px;
 }
+
+.tagHeader{
+    color: #b30000;
+}
+
+#rightSide{
+    text-align: right;
+
+}

@@ -1,4 +1,15 @@
 p{
     font-style: italic;
     font-weight: bold;
+
+}
+
+h2{
+    color: #b30000;
+}
+
+.col-md-12{
+    border: solid #cccccc 3px;
+    border-radius: 6px;
+
 }

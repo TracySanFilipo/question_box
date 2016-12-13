@@ -16,6 +16,12 @@ class QuestionViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class NeedyQuestionsViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.filter(answers__isnull=True)
+    serializer_class = QuestionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
 class UserQuestionViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -82,6 +88,15 @@ def list_question(request):
     return render(request, 'question_list.html', {'current_user': current_user})
 
 
+def needy_questions(request):
+    return render(request, 'needy_questions.html')
+
+
 def profile_page(request):
     current_user = request.user
     return render(request, 'profile.html', {'current_user': current_user})
+
+
+def question_detail(request):
+    current_user = request.user
+    return render(request, 'question_detail.html', {'current_user': current_user})

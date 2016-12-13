@@ -14,6 +14,7 @@ router.register(r'votes', views.VoteViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'users_questions', views.UserQuestionViewSet)
 router.register(r'users_answers', views.UserAnswerViewSet)
+router.register(r'needy_questions', views.NeedyQuestionsViewSet)
 
 
 
@@ -32,8 +33,9 @@ urlpatterns = [
     url(r'^ask_question/$', views.ask_question, name='ask_question'),
     url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
         name='tags'),
-    url(r'^users_questions/[0-9]+$', TemplateView.as_view(
-    template_name='question_detail.html')),
+    url(r'^users_questions/[0-9]+$', views.question_detail, name='question_detail'),
     url(r'^accounts/profile$', views.profile_page, name='profile'),
+    url(r'^needy_questions$', views.needy_questions, name='needy'),
+
 
 ]

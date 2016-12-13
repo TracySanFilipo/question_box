@@ -11,16 +11,17 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <div id="tagList"><h1>Tags already in database:</h1></div>
+        <div class="col-md-5">
+            <div id="tagList"><h1 class="tagHeader">Tags already in database:</h1></div>
         </div>
-        <div class="col-md-6">
-            <form name="newTagForm" id="newTagForm">
-            <h1>New Tag: </h1>
-            <input type="text" name="tagText" id="tagText"><br>
-            <br>
-            <button type="submit" id="createTag">Submit</button>
-            </form>
+        <div class="col-md-5">
+            <div class="row" id="rightSide">
+                <form name="newTagForm" id="newTagForm">
+                <label>New Tag: </label>
+                <input type="text" name="tagText" id="tagText">
+                <button type="submit" id="createTag">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
