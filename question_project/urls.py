@@ -33,9 +33,11 @@ urlpatterns = [
     url(r'^ask_question/$', views.ask_question, name='ask_question'),
     url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
         name='tags'),
-    url(r'^users_questions/[0-9]+$', views.question_detail, name='question_detail'),
+    url(r'^questions/[0-9]+/$', views.question_detail, name='question_detail'),
+    url(r'^users_questions/[0-9]+/$', views.question_detail, name='question_detail'),
+    url(r'^needy_questions/[0-9]+/$', views.question_detail, name='question_detail'),
     url(r'^accounts/profile$', views.profile_page, name='profile'),
-    url(r'^needy_questions$', views.needy_questions, name='needy'),
+    url(r'^needy_questions/$', views.needy_questions, name='needy'),
 
 
 ]

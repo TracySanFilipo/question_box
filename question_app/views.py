@@ -17,9 +17,13 @@ class QuestionViewSet(viewsets.ModelViewSet):
 
 
 class NeedyQuestionsViewSet(viewsets.ModelViewSet):
-    queryset = Question.objects.filter(answers__isnull=True)
+    queryset = Question.objects.all().order_by('-created')
     serializer_class = QuestionSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+        queryset = Question.objects.filter(answers__isnull=True)
+        return queryset
 
 
 class UserQuestionViewSet(viewsets.ModelViewSet):

@@ -1,9 +1,32 @@
 .profileHeader{
     text-align: center;
     color: #b30000;
+    border-bottom: solid #cccccc 1px;
 
 }
 
 .header{
     border-bottom: solid #cccccc 3px;
+    text-align: center;
+}
+
+.row{
+    padding: 1%;
+}
+
+#left{
+    float: left;
+}
+
+#right{
+    float: right;
+}
+
+.col-md-6{
+    background-color: #f2f2f2;
+    border: solid #cccccc 1px;
+    border-radius: 6px;
+}
+.row{
+    padding: 1%;
 }

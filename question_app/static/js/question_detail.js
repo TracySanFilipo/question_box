@@ -38,9 +38,10 @@ currentURL()
 
 
 function getQuestionDetail(url){
+    console.log("hi")
     var id = url.split('/')
     id = id[4]
-    var url = '/api/questions/' + id
+    var url = '/api' +'/' + 'questions' + '/' + id + '/'
     $.ajax({
         url: url,
         type: 'GET',

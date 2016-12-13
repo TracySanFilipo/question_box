@@ -59,7 +59,7 @@ Handlebars.registerHelper('linkURL', function (id, url, title, text){
     text = Handlebars.Utils.escapeExpression(text)
     datatype = this.url.split('/')
     datatype = datatype[datatype.length-3]
-    return '<a href="' + '/' + datatype + '/' + this.id + '">' + '<b>' + this.title + '</b>' + '</a>'
+    return '<a href="' + '/' + 'questions' + '/' + this.id + '/' + '">' + '<b>' + this.title + '</b>' + '</a>'
     return '<h2>' + this.text + '</h2>'
 })
 
