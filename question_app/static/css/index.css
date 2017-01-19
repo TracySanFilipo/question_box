@@ -8,8 +8,8 @@ h2{
     color: #b30000;
 }
 
-.col-md-12{
+.col-sm-11{
     border: solid #cccccc 3px;
     border-radius: 6px;
-
+    margin-left: 4%;
 }

@@ -6,30 +6,48 @@
     Tags
 {% endblock %}
 
-{% block stylecontent %}<link rel="stylesheet" href="{% static 'css/tag_list.css' %}">{% endblock %}
+{% block stylecontent %}
+<link rel="stylesheet" href="{% static 'css/question_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/tag_list.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-5">
-            <div id="tagList"><h1 class="tagHeader">Tags already in database:</h1></div>
-        </div>
-        <div class="col-md-5">
-            <div class="row" id="rightSide">
+        <div class="col-md-10">
+
+            <div class="row">
+                <div id="tagList"><h1 class="tagHeader">Tags already in database:
+                </h1><h5>Click on name to see related questions.</h5></div>
+            </div>
+
+            <div id="tagForm" class="rowForm">
                 <form name="newTagForm" id="newTagForm">
-                <label>New Tag: </label>
-                <input type="text" name="tagText" id="tagText">
-                <button type="submit" id="createTag">Submit</button>
+                    <label>Create New Tag: </label>
+                    <input type="text" name="tagText" id="tagText">
+                    <button type="submit" id="createTag">Submit</button>
                 </form>
             </div>
+
+
+
         </div>
     </div>
+
+    <!-- <div class="row">
+        <div class="col-md-10">
+            <div class="row">
+                <div id="questList"></div>
+            </div>
+        </div>
+    </div> -->
+
 </div>
 
 {% endblock %}
 
 {% block jscontent %}
-    <script id="post-template" type="text/x-handlebars-template">
+    <script id="tag-template" type="text/x-handlebars-template">
         <article class="post-container">
             {% verbatim %}
             {{#each results}}
@@ -37,11 +55,38 @@
                 <div class="row">
                     <div class='col-sm-11'>
                         <div class="row">
-                            <h3 id="tagTitle">{{name}}</h3>
+                            <a onclick=loadQuestionByTag({{id}})>
+                                <h3 id="tagTitle">{{name}}</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/each}}
+            {% endverbatim %}
+        </article>
+    </script>
+
+    <script id="question-template" type="text/x-handlebars-template">
+        <article class="post-container">
+            {%verbatim%}
+            {{#each results}}
+                <div class="row">
+                    <div class='col-sm-10'>
+                        <div class="row">
+                            <h3 class="questTitle">{{{ linkURL this }}}</h3>
+                            <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
+                            <br>
+                            <br>
+                            <p class="questText">{{text}}</a></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="back">
+                            <a href="/tags"><button id="createTag">Back</button></a>
+                        </div>
+                    </div>
+                </div>
             {{/each}}
             {% endverbatim %}
         </article>

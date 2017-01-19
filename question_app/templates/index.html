@@ -1,39 +1,36 @@
 {% extends "base.html" %}
-
 {% load static %}
 
-{% block title %}
-    Question Box
-{% endblock %}
+{% block title %}Question Box{% endblock %}
 
 {% block stylecontent %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Welcome to the Question Box</h2>
-                <p>Get all 42 answers to your questions<br>
-                    <br>If you would like to browse the questions, please feel
-                    free to click on Questions by Date. Each of the questions in
-                    the list can take you to a page for the question with its answers.
-                    <br>If you would like to ask or answer a question, you will
-                    need to be logged in. Registration is simple, just a username, and a
-                    password at least 8 characters long. Once you are logged in,
-                    just go to the Ask a Question link in the dropdown menu of the box,
-                    or go to a question's page to answer it. Please consider answering questions
-                    in the Answers needed link on the dropdown.<br>
-                    You may also vote on answers when logged in!
-                </p>
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-11">
+                    <h2>Welcome to the Question Box</h2>
+                    <p>Get all 42 answers to your questions<br>
+                        <br>If you would like to browse the questions,
+                        click on Questions by Date. Each of the questions in
+                        the list will link to a detial page with info and also
+                        answers for each question.
+                        <br>If you would like to ask or answer a question, you will
+                        need to be registered and logged in.
+                        Registration is simple, all you need is a username, and a
+                        password. Please consider answering  unanswered questions
+                        in the "Answers Needed" link on the dropdown menu.<br>
+                        You may also vote on answers when logged in!
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
 
-{% endblock %}
+    {% endblock %}
 
-{% block jscontent %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-{% endblock %}
+    {% block jscontent %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% endblock %}

@@ -31,10 +31,11 @@ $.ajaxSetup({
 
 function getQuestions(){
     $.ajax({
-        url: '/api/questions/',
+        url: '/api/get-questions/',
         type: 'GET',
     }).done(function(results){
-        var source = $('#post-template').html()
+        console.log(results)
+        var source = $('#question-template').html()
         var template = Handlebars.compile(source)
         var html = template(results)
         $('#questList').append(html)
@@ -44,30 +45,39 @@ function getQuestions(){
 getQuestions()
 
 
-Handlebars.registerHelper('formatTime', function (date) {
-    var day = date.slice(8, 10)
-    var month = date.slice(5, 7)
-    var year = date.slice(0, 4)
-    return month + "-" + day + "-" + year
-
+Handlebars.registerHelper('formatTime', function (posted) {
+    var time = posted.replace('T', ':')
+    var date = time.split(":")[0]
+    var year = Number(date.split("-")[0])
+    var month = Number(date.split("-")[1])
+    var day = Number(date.split("-")[2])
+    var months = {
+        "January": 1,
+        "February ": 2,
+        "March": 3,
+        "April": 4,
+        "May": 5,
+        "June": 6,
+        "July": 7,
+        "August": 8,
+        "September": 9,
+        "October": 10,
+        "November": 11,
+        "December": 12,
+    }
+    for(var i in months){
+        if(month == months[i]){
+            month = i
+        }
+    }
+    return month + " " + day + " " + year
 })
 
 
-Handlebars.registerHelper('linkURL', function (id, url, title, text){
-    title = Handlebars.Utils.escapeExpression(title)
-    id = Handlebars.Utils.escapeExpression(id)
-    text = Handlebars.Utils.escapeExpression(text)
-    datatype = this.url.split('/')
-    datatype = datatype[datatype.length-3]
-    console.log(datatype)
-    return '<a href="' + '/' + datatype + '/' + this.id + '/' + '">' + '<b>' + this.title + '</b>' + '</a>'
-    return '<h2>' + this.text + '</h2>'
-})
-
-
-Handlebars.registerHelper('userId', function(id){
-    $('').on('shown', function () {
-  // do something…
-})
-
+Handlebars.registerHelper('linkURL', function (object){
+    title = Handlebars.Utils.escapeExpression(object.title)
+    id = Handlebars.Utils.escapeExpression(object.id)
+    text = Handlebars.Utils.escapeExpression(object.text)
+    url = '/question_page/' + id + '/'
+    return '<a href="' + url + '">' + '<b>' + this.title + '</b>' + '</a>'
 })

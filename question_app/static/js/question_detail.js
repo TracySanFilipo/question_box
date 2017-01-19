@@ -38,15 +38,13 @@ currentURL()
 
 
 function getQuestionDetail(url){
-    console.log("hi")
     var id = url.split('/')
     id = id[4]
-    var url = '/api' +'/' + 'questions' + '/' + id + '/'
+    var url = '/api/get-questions/' + id + '/'
     $.ajax({
         url: url,
         type: 'GET',
     }).done(function(results){
-        console.log(results.answers)
         var answers = results.answers
         displayAnswers(answers)
         var context = {
@@ -55,7 +53,7 @@ function getQuestionDetail(url){
             text: results.text,
             id: results.id,
         }
-        var source = $('#post-template').html()
+        var source = $('#question-template').html()
         var template = Handlebars.compile(source)
         var html = template(context)
         $('#questDetail').append(html)
@@ -73,7 +71,6 @@ function answerQuestion(id){
         'text': answerText,
         'user': user,
     }
-    console.log(context)
     $.ajax({
         url: '/api/answers/',
         type: "POST",
@@ -85,7 +82,7 @@ function answerQuestion(id){
 
 
 function displayAnswers(answers){
-    var sourceTwo = $('#post-template-two').html()
+    var sourceTwo = $('#answer-template').html()
     var templateTwo = Handlebars.compile(sourceTwo)
     var htmlTwo = templateTwo(answers)
     $('#answerDetail').append(htmlTwo)
@@ -109,10 +106,30 @@ function voteAnswer(thisAnswerId, thisAnswerScore, amount){
 }
 
 
-Handlebars.registerHelper('formatTime', function (date) {
-    var day = date.slice(8, 10)
-    var month = date.slice(5, 7)
-    var year = date.slice(0, 4)
-    return month + "-" + day + "-" + year
-
+Handlebars.registerHelper('formatTime', function (posted) {
+    var time = posted.replace('T', ':')
+    var date = time.split(":")[0]
+    var year = Number(date.split("-")[0])
+    var month = Number(date.split("-")[1])
+    var day = Number(date.split("-")[2])
+    var months = {
+        "January": 1,
+        "February ": 2,
+        "March": 3,
+        "April": 4,
+        "May": 5,
+        "June": 6,
+        "July": 7,
+        "August": 8,
+        "September": 9,
+        "October": 10,
+        "November": 11,
+        "December": 12,
+    }
+    for(var i in months){
+        if(month == months[i]){
+            month = i
+        }
+    }
+    return month + " " + day + " " + year
 })

@@ -7,15 +7,12 @@ from django.views.generic import TemplateView
 
 
 router = routers.DefaultRouter()
-router.register(r'questions', views.QuestionViewSet)
+router.register(r'get-questions', views.QuestionGetViewSet)
+router.register(r'post-questions', views.QuestionPostViewSet)
 router.register(r'answers', views.AnswerViewSet)
 router.register(r'tags', views.TagViewSet)
 router.register(r'votes', views.VoteViewSet)
 router.register(r'users', views.UserViewSet)
-router.register(r'users_questions', views.UserQuestionViewSet)
-router.register(r'users_answers', views.UserAnswerViewSet)
-router.register(r'needy_questions', views.NeedyQuestionsViewSet)
-
 
 
 urlpatterns = [
@@ -33,9 +30,7 @@ urlpatterns = [
     url(r'^ask_question/$', views.ask_question, name='ask_question'),
     url(r'^tags/$', TemplateView.as_view(template_name='tag_list.html'),
         name='tags'),
-    url(r'^questions/[0-9]+/$', views.question_detail, name='question_detail'),
-    url(r'^users_questions/[0-9]+/$', views.question_detail, name='question_detail'),
-    url(r'^needy_questions/[0-9]+/$', views.question_detail, name='question_detail'),
+    url(r'^question_page/[0-9]+/$', views.question_detail, name='question_detail'),
     url(r'^accounts/profile$', views.profile_page, name='profile'),
     url(r'^needy_questions/$', views.needy_questions, name='needy'),
 

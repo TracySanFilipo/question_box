@@ -32,36 +32,33 @@ $.ajaxSetup({
 function askQuestion(){
     var questTitle = $('#qTitle').val()
     var questText = $('#qText').val()
-    var questTag = 2
+    var questTag = $('#tagSelect option:selected').val()
     var user_id = $('#userId').val()
     context = {
         'title': questTitle,
         'text': questText,
-        'tags': questTag,
+        'tag': questTag,
         'user': user_id,
     }
-    console.log(context)
     $.ajax({
-        url: '/api/questions/',
+        url: '/api/post-questions/',
         type: "POST",
         data: context
     }).done(function(results) {
-        window.location.href='/questions/';
     })
 }
 $('#newQuestSubmit').click(askQuestion)
 
 
 function getTags(){
-    var dropdown = $("#selectTag")
     $.ajax({
         url: '/api/tags/',
         type: 'GET',
     }).done(function(results){
-        console.log(results.results)
-        var source = $('#post-template').html()
+        var tags = results.results
+        var source = $('#tags-template').html()
         var template = Handlebars.compile(source)
-        var html = template(results)
+        var html = template(tags)
         $('#currentTags').append(html)
     })
 }

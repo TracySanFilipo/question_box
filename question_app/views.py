@@ -1,55 +1,55 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from .models import Question, Answer, Tag, Vote
 from rest_framework import viewsets
-from .serializers import QuestionSerializer, AnswerSerializer
+from .serializers import QuestionGetSerializer, AnswerSerializer
 from .serializers import VoteSerializer, TagSerializer, UserSerializer
+from .serializers import QuestionPostSerializer
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
-from rest_framework import permissions, generics
-import django_filters
+from django.contrib.auth import login
+from rest_framework import permissions
 from django.contrib.auth.models import User
+from django_filters.rest_framework import DjangoFilterBackend
+import django_filters
 
-class QuestionViewSet(viewsets.ModelViewSet):
+
+class QuestionFilter(django_filters.rest_framework.FilterSet):
+    no_answers = django_filters.BooleanFilter(name='answers',
+                                                lookup_expr='isnull')
+    class Meta:
+        model = Question
+        fields = ['tag', 'user', 'no_answers']
+
+
+class QuestionGetViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('-created')
-    serializer_class = QuestionSerializer
+    serializer_class = QuestionGetSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_class = QuestionFilter
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class NeedyQuestionsViewSet(viewsets.ModelViewSet):
+class QuestionPostViewSet(viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('-created')
-    serializer_class = QuestionSerializer
+    serializer_class = QuestionPostSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_class = QuestionFilter
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    def get_queryset(self):
-        queryset = Question.objects.filter(answers__isnull=True)
-        return queryset
 
+class AnswerFilter(django_filters.rest_framework.FilterSet):
 
-class UserQuestionViewSet(viewsets.ModelViewSet):
-    serializer_class = QuestionSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    queryset = Question.objects.none()
-
-    def get_queryset(self):
-        return self.request.user.question_user.all()
+    class Meta:
+        model = Answer
+        fields = ['user']
 
 
 class AnswerViewSet(viewsets.ModelViewSet):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_class = AnswerFilter
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-
-class UserAnswerViewSet(viewsets.ModelViewSet):
-    queryset = Answer.objects.all()
-    serializer_class = AnswerSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-
-    def get_queryset(self):
-        return self.request.user.answer_user.all()
-
 
 
 class TagViewSet(viewsets.ModelViewSet):
@@ -63,10 +63,11 @@ class VoteViewSet(viewsets.ModelViewSet):
     serializer_class = VoteSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 def register(request):
@@ -89,7 +90,8 @@ def ask_question(request):
 
 def list_question(request):
     current_user = request.user
-    return render(request, 'question_list.html', {'current_user': current_user})
+    return render(request, 'question_list.html',
+                  {'current_user': current_user})
 
 
 def needy_questions(request):
@@ -103,4 +105,5 @@ def profile_page(request):
 
 def question_detail(request):
     current_user = request.user
-    return render(request, 'question_detail.html', {'current_user': current_user})
+    return render(request, 'question_detail.html',
+                  {'current_user': current_user})

@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}
-    Question Detail
-{% endblock %}
+    {% block title %}Question Detail{% endblock %}
 
 {% block stylecontent %}<link rel="stylesheet" href="{%static 'css/question_detail.css'%}">{% endblock %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="questDetail"></div>
-                <input id="userId" type="hidden" name="userId" value="{{user.id}}">
+    {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="questDetail"></div>
+                    <input id="userId" type="hidden" name="userId" value="{{user.id}}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="answerDetail"></div>
+                </div>
             </div>
         </div>
+    {% endblock %}
 
-        <div class="row">
-            <div class="col-md-12">
-                <div id="answerDetail"></div>
-            </div>
-        </div>
-    </div>
-
-    <script id="post-template" type="text/x-handlebars-template">
+    {% block jscontent %}
+    <script id="question-template" type="text/x-handlebars-template">
         <article class="post-container">
             {% verbatim %}
                 <h3 class="questTitle">{{title}}</h3>
@@ -42,7 +42,8 @@
                                 <h3 class="modal-title">{{title}}</h3>
                             </div>
                             <div class="modal-body">
-                                <input id="questAnswer{{id}}" type="text" name="answer" value="">
+                                <h4>Enter you answer here:</h4>
+                                <textarea id="questAnswer{{id}}" type="text" name="answer" value="" rows="10" cols="60"></textarea>
                                 <input id="{{id}}" type="hidden" name="quest_id" value="{{id}}">
                             </div>
                             <div class="modal-footer">
@@ -56,7 +57,7 @@
         </article>
     </script>
 
-    <script id="post-template-two" type="text/x-handlebars-template">
+    <script id="answer-template" type="text/x-handlebars-template">
         <article class="post-container-two">
             {% verbatim %}
                 {{#each this}}
@@ -64,7 +65,6 @@
                     <h2 class="answerHeader">Answer:</h2>
                     <h4 class="answerText">{{this.this.text}}</h4>
                     <h6 class="answerDate">Date Posted: {{{formatTime created}}}</h6>
-                    <h6 class="answerCreator">Posted by: {{ user.name}}</h6>
                     <h6 class="answerScore" id="answer_score_{{id}}">Score: {{score}}</h6>
                     <button type="submit" class="upanswer" onclick="voteAnswer({{id}}, {{score}}, 1)">
                        <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -78,10 +78,6 @@
         </article>
     </script>
 
-
-{% endblock %}
-
-{% block jscontent %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

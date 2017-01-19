@@ -1,3 +1,14 @@
+.col-md-10{
+    background-color: #F1EEEE;
+    margin-left: 7%;
+
+}
+
+.rowForm{
+    text-align: right;
+    padding: 2%;
+}
+
 #createTag{
     border: 0;
     border-radius: 3px;
@@ -16,5 +27,24 @@
 
 #rightSide{
     text-align: right;
+    margin-top: 15%;
+
+}
+
+
+.linkBack{
+     cursor: pointer;
+}
+
+.back{
+    text-align: right;
+    margin-right: 5%;
+    margin-top: 4%;
+}
+
+h5{
+    font-style: italic;
+    margin-left: 1%;
+    font-weight: bold;
 
 }

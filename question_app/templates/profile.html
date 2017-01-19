@@ -12,6 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <input id="userId" type="hidden" name="user_id" value="{{request.user.id}}">
             <h1 class="profileHeader">{{user.username}}</h1>
         </div>
     </div>
@@ -38,10 +39,10 @@
 {% endblock %}
 
 {% block jscontent %}
-    <script id="post-template" type="text/x-handlebars-template">
+    <script id="question-template" type="text/x-handlebars-template">
         <article class="post-container">
             {% verbatim %}
-            {{#each results}}
+            {{#each .}}
                 <div class="row">
                     <div class='col-sm-11'>
                         <div class="row">
@@ -57,16 +58,16 @@
     </script>
 
 
-    <script id="post-template-answers" type="text/x-handlebars-template">
+    <script id="answer-template" type="text/x-handlebars-template">
         <article class="post-container">
             {% verbatim %}
-            {{#each results}}
+            {{#each .}}
                 <div class="row">
                     <div class='col-sm-11'>
                         <div class="row">
-                            <p class="questText">{{text}}</a></p>
+                            <p class="answerText">{{text}}</a></p>
                             <h6 class="questDate">Date Posted: {{{formatTime created}}}</h6>
-
+                            <h6 class="score">Score: {{score}}</h6>
                         </div>
                     </div>
                 </div>

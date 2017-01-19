@@ -1,6 +1,7 @@
-.col-md-12{
+.col-md-10{
     background-color: #F1EEEE;
     border-radius: 5px;
+    margin-left: 7%;
 }
 
 #newQuestSubmit{

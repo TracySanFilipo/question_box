@@ -6,24 +6,32 @@ from django.contrib.auth.models import User
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('text', 'score', 'question', 'user', 'id', 'created',
-                  'url')
+        fields = ['id', 'text', 'score', 'question', 'user', 'created', 'url']
 
 
 class TagSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Tag
         fields = ['name', 'id']
 
 
-class QuestionSerializer(serializers.ModelSerializer):
+class QuestionGetSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
-
+    tag = TagSerializer(many=False, read_only=True)
 
     class Meta:
         model = Question
-        fields = ['title', 'text', 'tags', 'user', 'url', 'created', 'id', 'answers']
+        fields = ['id', 'title', 'text', 'tag', 'user', 'url', 'created',
+                  'answers']
+
+
+
+class QuestionPostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Question
+        fields = ['id', 'title', 'text', 'tag', 'user', 'url', 'created']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,4 +44,4 @@ class UserSerializer(serializers.ModelSerializer):
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
-        fields = ('user', 'answer', 'point')
+        fields = ['user', 'answer', 'point']

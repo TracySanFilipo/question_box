@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block title %}
     Ask Question
 {% endblock %}
@@ -11,36 +9,38 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <h3 class="askHeader">Ask a Question: All fields must be used.</h3>
-            <form name="newQuestionForm" id="newQuestionForm" action="javascript:;"
-                onsubmmit="askQuestion(this)" method="POST">
+            <form method="POST">
+                {%csrf_token%}
+                <input type="hidden" name="redirect" value="/questions/">
                 <h4>Question Title: </h4><input type="text" name="qTitle" id="qTitle"><br>
                 <h4>Question text: </h4><input type="text" name="qText" id="qText"><br>
                 <input id="userId" type="hidden" name="user_id" value="{{current_user.id}}">
                 <h4>Choose tag:</h4>
-                <div id="currentTags" selected="selected"></div><br>
+                <div id="currentTags"></div><br>
                 <input type="submit" value="Submit" name="newQuestSubmit" id="newQuestSubmit">
             </form>
             <br>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block jscontent %}
-    <script id="post-template" type="text/x-handlebars-template">
+    <script id="tags-template" type="text/x-handlebars-template">
         <article class="post-container">
-            <select name="currentTags">
-            {% verbatim %}
-            {{#each results}}
-            <option value="{{id}}"{{#selected}}selected="selected"{{/selected}}>{{name}}</option>
-            {{/each}}
-            {% endverbatim %}
-             </select>
+            <select id="tagSelect">
+                {% verbatim %}
+                <option value="none"></option>
+                {{#each .}}
+                    <option value="{{id}}"{{#selected}}selected="selected"{{/selected}}>{{this.name}}</option>
+                {{/each}}
+                {% endverbatim %}
+            </select>
         </article>
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
