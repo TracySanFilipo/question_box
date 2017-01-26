@@ -9,7 +9,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'warm-ridge-27360.herokuapp.com',
+ALLOWED_HOSTS = ['0.0.0.0',
                  '127.0.0.1',
                  ]
 
@@ -70,7 +70,7 @@ DATABASES = {
          'NAME': 'question_Box',
          'USER': '',
          'PASSWORD': '',
-         'HOST': 'localhost', 
+         'HOST': 'localhost',
          'PORT': '5432',
      }
  }
