@@ -9,7 +9,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0',
+ALLOWED_HOSTS = ['0.0.0.0', 'enigmatic-lowlands-92728.herokuapp.com',
                  '127.0.0.1',
                  ]
 
